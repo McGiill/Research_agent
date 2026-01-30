@@ -1,0 +1,23 @@
+{
+  "filename": "117889_Generative diffusion for perceptron problems_ statistical physics analysis and efficient algorithms.pdf",
+  "total_pages": 40,
+  "images": [
+    {
+      "page_number": 8,
+      "image_index": 1,
+      "filename": "page8_img1.png",
+      "path": "/data/output/117889_Generative diffusion for perceptron problems_ statistical physics analysis and efficient algorithms/images/page8_img1.png",
+      "format": "png",
+      "size_bytes": 21117
+    },
+    {
+      "page_number": 24,
+      "image_index": 1,
+      "filename": "page24_img1.png",
+      "path": "/data/output/117889_Generative diffusion for perceptron problems_ statistical physics analysis and efficient algorithms/images/page24_img1.png",
+      "format": "png",
+      "size_bytes": 59070
+    }
+  ],
+  "total_images_extracted": 2
+}

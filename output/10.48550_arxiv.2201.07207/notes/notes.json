@@ -1,0 +1,468 @@
+{
+  "notes": [
+    {
+      "id": "note_1769662433669_v74v4m",
+      "title": "Abstract",
+      "pages": {
+        "manual": "",
+        "analysis": "- **3줄 핵심 요약**: \n  - 이 연구는 대형 언어 모델(LLM)이 학습한 세계 지식을 활용하여 상호작용 환경에서 행동할 수 있는지를 탐구합니다.\n  - LLM이 고수준의 과제를 중간 수준의 실행 가능한 계획으로 분해할 수 있지만, 이러한 계획이 항상 환경에서 실행 가능한 것은 아닙니다.\n  - 연구진은 기존의 시연을 조건으로 하여 계획을 실행 가능한 행동으로 번역하는 절차를 제안하며, 이를 통해 실행 가능성을 크게 향상시켰습니다.\n\n- **상세 해설**:\n  - **첫 문단**에서는 대형 언어 모델(LLM)이 학습한 세계 지식을 상호작용 환경에서 활용할 수 있는지를 탐구하는 연구의 목적을 설명합니다. 예를 들어, \"아침 식사 준비하기\"와 같은 고수준의 과제를 \"냉장고 열기\"와 같은 실행 가능한 단계로 변환할 수 있는지를 조사합니다.\n  - **두 번째 문단**에서는 기존 연구가 명시적인 단계별 예제를 통해 학습하는 데 중점을 두었지만, 대형 언어 모델이 충분히 크고 적절히 프롬프트될 경우 추가 학습 없이도 고수준의 과제를 중간 수준의 계획으로 효과적으로 분해할 수 있음을 발견했다고 설명합니다.\n  - **세 번째 문단**에서는 LLM이 생성한 계획이 종종 실행 가능한 행동으로 정확히 매핑되지 않는 문제를 지적합니다. 이를 해결하기 위해 연구진은 기존의 시연을 조건으로 하고 계획을 실행 가능한 행동으로 의미론적으로 번역하는 절차를 제안합니다.\n  - **마지막 문단**에서는 제안된 방법이 VirtualHome 환경에서 LLM 기반의 기본 성능보다 실행 가능성을 크게 향상시켰음을 평가 결과로 보여줍니다. 또한, 인간 평가를 통해 실행 가능성과 정확성 사이의 트레이드오프가 존재하지만, 언어 모델에서 실행 가능한 지식을 추출하는 데 있어 유망한 가능성을 보여줍니다.\n\n- **주요 개념/용어**:\n  - **대형 언어 모델(LLM)**: 대량의 텍스트 데이터를 기반으로 학습된 인공지능 모델로, 자연어 처리 작업을 수행할 수 있는 능력을 갖추고 있습니다.\n  - **프롬프트**: 언어 모델에 특정 작업을 수행하도록 지시하는 입력 텍스트로, 모델의 출력을 유도하는 역할을 합니다.\n  - **실행 가능성**: 생성된 계획이 실제 환경에서 실행될 수 있는지를 나타내는 척도입니다.\n  - **VirtualHome**: 가상 환경에서 다양한 인간 활동을 시뮬레이션할 수 있는 플랫폼으로, 본 연구의 평가 환경으로 사용되었습니다."
+      },
+      "activePage": "analysis",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 207,
+        "endIndex": 3683,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_lb1f1m",
+      "title": "1 Introduction",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 3683,
+        "endIndex": 3814,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_t8cxge",
+      "title": "2.2 Metrics",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 3814,
+        "endIndex": 3908,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_d4wdp2",
+      "title": "3 Method",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 3908,
+        "endIndex": 4193,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_7gcnkv",
+      "title": "3.4 Dynamic Example Selection for Improved Knowledge Extraction",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 4193,
+        "endIndex": 4277,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_waxiod",
+      "title": "4 Results",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 4277,
+        "endIndex": 4552,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_oba6tm",
+      "title": "5 Analysis and Discussions",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 4552,
+        "endIndex": 4767,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_3k2io0",
+      "title": "5.3 Effect of Different Translation LMs",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 4767,
+        "endIndex": 5041,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_ql0xoa",
+      "title": "6 Related Works",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 5041,
+        "endIndex": 5100,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_fpxowj",
+      "title": "13 A Appendix",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 5100,
+        "endIndex": 5210,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_1lk6rq",
+      "title": "A.2 Details of Human Evaluations",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 5210,
+        "endIndex": 5397,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_jf9esk",
+      "title": "A.4 Natural Language Templates for All Atomic Actions",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 5397,
+        "endIndex": 5486,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_6gq5o5",
+      "title": "A.5 Random Samples of Action Plans",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 5486,
+        "endIndex": 9805,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_b3nrbu",
+      "title": "3 Task: Shave",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 9805,
+        "endIndex": 10908,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_fnamuk",
+      "title": "2 Evaluation Framework",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 10908,
+        "endIndex": 11718,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_w7r16n",
+      "title": "2.1 Evaluated Environment: VirtualHome",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 11718,
+        "endIndex": 18349,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_o4vya6",
+      "title": "3.1 Querying LLMs for Action Plans",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 18349,
+        "endIndex": 20294,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_b31ndm",
+      "title": "3.2 Admissible Action Parsing by Semantic Translation",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 20294,
+        "endIndex": 22173,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_9oo44y",
+      "title": "3.3 Autoregressive Trajectory Correction",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 22173,
+        "endIndex": 25611,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_p2f4sh",
+      "title": "7 Task: Complete Amazon",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 25611,
+        "endIndex": 29298,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_jioxh3",
+      "title": "8 Language Model",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 29298,
+        "endIndex": 33739,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_7xu756",
+      "title": "5.1 Ablation of design decisions",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 33739,
+        "endIndex": 39418,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_w6cmdy",
+      "title": "5.5 Analysis of program length",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 39418,
+        "endIndex": 40542,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_zv066q",
+      "title": "7.36 Human",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 40542,
+        "endIndex": 47486,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_jylv49",
+      "title": "13 References",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 47486,
+        "endIndex": 60895,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_qkpxp8",
+      "title": "17 A\nAppendix",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 60895,
+        "endIndex": 63544,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_0nvv5g",
+      "title": "A.3 All Evaluated Tasks",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 63544,
+        "endIndex": 63711,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_dgvp57",
+      "title": "1. Apply lotion",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 63711,
+        "endIndex": 63778,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_xazoos",
+      "title": "5. Brush teeth",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 63778,
+        "endIndex": 63847,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_2smc6a",
+      "title": "8. Collect napkin rings",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 63847,
+        "endIndex": 63906,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_uyzgun",
+      "title": "10. Compute",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 63906,
+        "endIndex": 63962,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_a3sk9t",
+      "title": "14. Draft home",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 63962,
+        "endIndex": 64015,
+        "sourceFile": "json"
+      }
+    },
+    {
+      "id": "note_1769662433669_4yw8fu",
+      "title": "17. Dust",
+      "pages": {
+        "manual": ""
+      },
+      "activePage": "manual",
+      "isOpen": true,
+      "sectionBoundary": {
+        "startIndex": 64015,
+        "endIndex": 96237,
+        "sourceFile": "json"
+      }
+    }
+  ],
+  "updated_at": "2026-01-29T04:54:22.611804"
+}

@@ -1,0 +1,3 @@
+URL  Ho, Ajay Jain, and Pieter Abbeel
+Origin of the computational hardness for learning with binary synapses
+Information, Physics, and Computation

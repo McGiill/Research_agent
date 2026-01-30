@@ -1,0 +1,17 @@
+{
+  "filename": "117889_Generative diffusion for perceptron problems_ statistical physics analysis and efficient algorithms",
+  "original_filename": "117889_Generative diffusion for perceptron problems_ statistical physics analysis and efficient algorithms",
+  "references_detected": 3,
+  "titles_extracted": 3,
+  "titles": [
+    "URL  Ho, Ajay Jain, and Pieter Abbeel",
+    "Origin of the computational hardness for learning with binary synapses",
+    "Information, Physics, and Computation"
+  ],
+  "diagnostics": {
+    "has_references_header": true,
+    "parsed_items_count": 3,
+    "is_numbered": true,
+    "id_normalized": false
+  }
+}

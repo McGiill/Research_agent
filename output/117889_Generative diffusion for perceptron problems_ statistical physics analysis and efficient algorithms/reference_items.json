@@ -1,0 +1,35 @@
+[
+  {
+    "ref_no": 16376,
+    "title": "URL  Ho, Ajay Jain, and Pieter Abbeel",
+    "ids": {
+      "url": "https://proceedings.mlr.press/v235/grenioux24a.html.Jonathan",
+      "year": "2024"
+    },
+    "graph_id": "",
+    "raw_text": "PMLR, 2024. URL https://proceedings.mlr.press/v235/grenioux24a.html.Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. In Advances in Neural Information Processing Sy..."
+  },
+  {
+    "ref_no": 2020,
+    "title": "Origin of the computational hardness for learning with binary synapses",
+    "ids": {
+      "doi": "10.1103/PhysRevE.90.052813.Yukito",
+      "url": "https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html.Haiping",
+      "year": "2020"
+    },
+    "graph_id": "",
+    "raw_text": "URL https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html.Haiping Huang and Yoshiyuki Kabashima. Origin of the computational hardness for learning with binary s..."
+  },
+  {
+    "ref_no": 2007,
+    "title": "Information, Physics, and Computation",
+    "ids": {
+      "doi": "10.7551/mitpress/7443.003.0014.Marc",
+      "arxiv": "2305.10690",
+      "url": "https://openreview.net/forum?id=fmJUYgmMbL.Sundeep",
+      "year": "2009"
+    },
+    "graph_id": "10.48550_arxiv.2305.10690",
+    "raw_text": "doi:10.7551/mitpress/7443.003.0014.Marc Mézard and Andrea Montanari. Information, Physics, and Computation. Oxford University Press, Inc., USA, 2009. ISBN 019857083X. doi:10.1093/acprof:oso/9780198570..."
+  }
+]
