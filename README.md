@@ -1,3 +1,21 @@
+# Notion Save 사용법
+.env에 다음 2개 추가
+- NOTION_PARENT_PAGE_ID=
+- NOTION_API_TOKEN=
+
+
+
+NOTION_API_TOKEN=
+https://www.notion.so/profile/integrations 링크에서 API 발급
+
+편집 권한에서 저장 원하는 페이지 지정
+<img width="2666" height="960" alt="image" src="https://github.com/user-attachments/assets/a232a1d3-2316-4c61-99dc-112391702c76" />
+
+저장 원하는 페이지 URL 에서 뒷부분 
+NOTION_PARENT_PAGE_ID=
+<img width="2054" height="784" alt="스크린샷 2026-01-30 111953" src="https://github.com/user-attachments/assets/23f23abd-2b32-443c-a325-cb5a42db8ff2" />
+
+
 # Research Agent
 
 A Docker-based research assistant with MCP (Model Context Protocol) architecture and paper graph visualization.

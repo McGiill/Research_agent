@@ -2,11 +2,17 @@ import os
 import json
 import logging
 import re
+import time
 import arxiv
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from openai import AsyncOpenAI
 from ..base import MCPTool, ToolParameter
+
+# LLM Logging
+import sys
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+from logs.llm_logger import get_logger as get_llm_logger, SummaryType
 
 # PDF 라이브러리
 try:
@@ -190,7 +196,7 @@ class GenerateReportTool(MCPTool):
         try:
             prompt = f"""
             당신은 AI 논문 전문 분석가입니다. 아래 내용을 바탕으로 [종합 요약 보고서]를 작성해 주세요.
-            
+
             [논문 텍스트 일부]
             {full_text[:50000]}
 
@@ -199,24 +205,79 @@ class GenerateReportTool(MCPTool):
             2. 🛠 주요 방법론 (Methodology)
             3. 📊 실험 결과 및 성능 (Experiments)
             4. 💡 결론 및 한계점
-            
+
             반드시 **한국어**로 작성하세요.
             """
 
+            start_time = time.time()
             response = await aclient.chat.completions.create(
                 model="gpt-4o",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3,
             )
 
+            latency_ms = (time.time() - start_time) * 1000
             content = response.choices[0].message.content
+
+            # Extract token usage
+            token_usage = {}
+            if hasattr(response, 'usage') and response.usage:
+                token_usage = {
+                    "prompt_tokens": response.usage.prompt_tokens,
+                    "completion_tokens": response.usage.completion_tokens,
+                    "total_tokens": response.usage.total_tokens
+                }
+
+            # LLM Logging - Log report generation
+            try:
+                llm_logger = get_llm_logger()
+
+                llm_logger.log_summary(
+                    paper_id=paper_id,
+                    summary_type=SummaryType.COMPREHENSIVE,
+                    summary_prompt=prompt[:5000],
+                    summary_response=content,
+                    source_text_length=len(full_text),
+                    model="gpt-4o",
+                    temperature=0.3,
+                    metadata={
+                        "source_truncated": len(full_text) > 50000
+                    }
+                )
+
+                llm_logger.log_llm_call(
+                    model="gpt-4o",
+                    prompt=prompt[:5000],
+                    response=content[:5000],
+                    tool_name="generate_report",
+                    temperature=0.3,
+                    token_usage=token_usage,
+                    latency_ms=latency_ms,
+                    paper_id=paper_id
+                )
+            except Exception as log_error:
+                logger.warning(f"Failed to log report generation: {log_error}")
 
             # 저장 (결과 폴더가 없으면 생성)
             paper_dir.mkdir(parents=True, exist_ok=True)
-            with open(paper_dir / "summary_report.txt", "w", encoding="utf-8") as f:
+            report_file_path = paper_dir / "summary_report.txt"
+            with open(report_file_path, "w", encoding="utf-8") as f:
                 f.write(content)
 
-            return {"success": True, "content": content}
+            # LLM Logging - Log artifact
+            try:
+                llm_logger = get_llm_logger()
+                llm_logger.log_artifact(
+                    artifact_type="summary_report_txt",
+                    file_path=str(report_file_path),
+                    generation_method="llm",
+                    input_sources=[{"type": "full_text", "length": len(full_text)}],
+                    paper_id=paper_id
+                )
+            except Exception as log_error:
+                logger.warning(f"Failed to log artifact: {log_error}")
+
+            return {"success": True, "result": {"content": content}}
 
         except Exception as e:
             logger.error(f"Report gen failed: {e}")

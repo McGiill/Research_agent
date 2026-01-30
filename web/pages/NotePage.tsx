@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
-import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+import { getDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist';
 import ReactMarkdown from 'react-markdown';
-import { executeTool } from '../lib/mcp';
+import { executeTool, saveToNotion } from '../lib/mcp';
 
-// Vite 호환 worker 설정
-GlobalWorkerOptions.workerSrc = workerSrc;
+// PDF.js worker 설정 - CDN에서 로드 (Vite node_modules 접근 문제 해결)
+GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsVersion}/pdf.worker.min.mjs`;
 
 type PdfDoc = {
   numPages: number;
@@ -175,11 +174,12 @@ export default function NotePage(props: { noteId?: string } = {}) {
     });
   }, []);
 
-  // Loading states for extraction, translation, analysis, and prompt
+  // Loading states for extraction, translation, analysis, prompt, and Notion
   const [extracting, setExtracting] = useState(false);
   const [translatingNoteId, setTranslatingNoteId] = useState<string | null>(null);
   const [analyzingNoteId, setAnalyzingNoteId] = useState<string | null>(null);
   const [promptingNoteId, setPromptingNoteId] = useState<string | null>(null);
+  const [savingToNotion, setSavingToNotion] = useState(false);
 
   // Load notes from file system (priority) or localStorage (fallback)
   useEffect(() => {
@@ -1209,6 +1209,61 @@ ${extractedText.slice(0, 50000)}`;
     }
   }, [usedId, paperId, notes, loadExtractedText, updateNotePage, setActivePage]);
 
+  // Save all notes to Notion
+  
+// Save all notes to Notion (multi-note toggle tree)
+const handleSaveToNotion = useCallback(async () => {
+  const id = usedId || stripPrefixes(paperId);
+  if (!id) {
+    alert('논문 ID를 찾을 수 없습니다.');
+    return;
+  }
+
+  if (notes.length === 0) {
+    alert('저장할 노트가 없습니다.');
+    return;
+  }
+
+  setSavingToNotion(true);
+  try {
+    // Build `notes` payload expected by MCP save_to_notion tool.
+    // Each UI note becomes a top-level toggle; each tab becomes a sub-toggle.
+    const notionNotes = notes.map(n => ({
+      title: n.title || '(제목 없음)',
+      memo: (n.pages.manual || '').trim(),
+      translation: (n.pages.translation || '').trim(),
+      analysis: (n.pages.analysis || '').trim(),
+      // In UI this is "qa" tab but label is Prompt; backend supports prompt/qa
+      qa: (n.pages.qa || '').trim(),
+    }));
+
+    // Use executeTool directly so the payload is not altered by wrappers.
+    const result = await executeTool('save_to_notion', {
+      paper_id: id,
+      paper_title: id, // if you later have real title metadata, replace here
+      notes: notionNotes,
+      updated_at: new Date().toISOString(),
+    });
+
+    if (result.success) {
+      const pageUrl = result.page_url || result.result?.page_url;
+      const pageTitle = result.page_title || result.result?.page_title;
+      alert(`Notion에 저장되었습니다!\n\n페이지: ${pageTitle || ''}\nURL: ${pageUrl || ''}`);
+
+      if (pageUrl && confirm('Notion 페이지를 열까요?')) {
+        window.open(pageUrl, '_blank');
+      }
+    } else {
+      alert(`Notion 저장 실패: ${result.error || 'Unknown error'}`);
+    }
+  } catch (e) {
+    const errorMessage = e instanceof Error ? e.message : String(e);
+    alert(`Notion 저장 실패: ${errorMessage}`);
+  } finally {
+    setSavingToNotion(false);
+  }
+}, [usedId, paperId, notes]);
+
   return (
     <div ref={containerRef} style={{ display: 'flex', height: '100vh', backgroundColor: '#f5f5f5' }}>
       <style>{`
@@ -1366,6 +1421,23 @@ ${extractedText.slice(0, 50000)}`;
               title="논문 소목차를 추출하여 노트를 생성합니다"
             >
               {extracting ? '추출 중...' : '소목차 추출'}
+            </button>
+            <button
+              onClick={handleSaveToNotion}
+              disabled={savingToNotion || notes.length === 0}
+              style={{
+                padding: '5px 10px',
+                borderRadius: 6,
+                border: '1px solid #e2e8f0',
+                backgroundColor: savingToNotion ? '#edf2f7' : '#faf5ff',
+                color: savingToNotion ? '#a0aec0' : '#6b46c1',
+                cursor: savingToNotion || notes.length === 0 ? 'not-allowed' : 'pointer',
+                fontSize: 12,
+                fontWeight: 600,
+              }}
+              title="현재 노트를 Notion에 저장합니다"
+            >
+              {savingToNotion ? '저장 중...' : 'Notion에 저장'}
             </button>
             <button
               onClick={addNote}
